@@ -62,6 +62,7 @@ public class OrderController {
     @PostMapping("/addordertoconsumer")
     public String addOrderToConsumer(@ModelAttribute Consumer consumer, Order order, Errors errors, SessionStatus sessionStatus){
         order.setAppendDate(new Date());
+        order.setReceiveFact(order.getReceivePlan());
         consumer.addOrder(order);
         log.info(order.toString());
         log.info(consumer.toString());
@@ -71,6 +72,7 @@ public class OrderController {
     @PostMapping("/saveconsumer")
     public String saveConsumer(@ModelAttribute Consumer consumer, SessionStatus sessionStatus){
         log.info(consumer.toString());
+        consumerRepository.saveConsumerOrders(consumer, consumer.getOrders());
         sessionStatus.setComplete();
         return "redirect:/order";
     }

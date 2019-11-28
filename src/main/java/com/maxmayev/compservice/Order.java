@@ -16,12 +16,12 @@ import java.util.Locale;
 @Slf4j
 public class Order {
 
-    private int id;
+    //private int id;
     private Date appendDate;
     private Date receivePlan;
     private Date receiveFact;
     private Date callDate;
-    private boolean active;
+    private int active = 1;
     private Technic technic;
     private String brand;
     private String model;
