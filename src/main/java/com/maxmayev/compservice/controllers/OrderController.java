@@ -43,7 +43,7 @@ public class OrderController {
         model.addAttribute("consumers",consumers);
         Order order = new Order();
         order.setAppendDate(new Date());
-        model.addAttribute("order",order);
+        model.addAttribute("order", order);
         Order.Technic[] technics = Order.Technic.values();
         model.addAttribute("technics",technics);
         Order.Condition[] conditions = Order.Condition.values();
@@ -61,10 +61,21 @@ public class OrderController {
 
     @PostMapping("/addordertoconsumer")
     public String addOrderToConsumer(@ModelAttribute Consumer consumer, Order order, Errors errors, SessionStatus sessionStatus){
+        order.setAppendDate(new Date());
         consumer.addOrder(order);
         log.info(order.toString());
+        log.info(consumer.toString());
         return "redirect:/order";
     }
+
+    @PostMapping("/saveconsumer")
+    public String saveConsumer(@ModelAttribute Consumer consumer, SessionStatus sessionStatus){
+        log.info(consumer.toString());
+        sessionStatus.setComplete();
+        return "redirect:/order";
+    }
+
+
 
 
 }

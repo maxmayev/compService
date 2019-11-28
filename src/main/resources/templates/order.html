@@ -21,21 +21,34 @@
             <table>
                 <tr>
                     <td>
-            <p>
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">
-                    Добавить клиента
-                </button>
-            </p>
-       <!-- </div>
-        <div class="col">-->
+                            <p>
+                                <button  class="btn btn-primary" type="button" data-toggle="collapse"
+                                        data-target="#collapseExample" aria-expanded="true"
+                                        aria-controls="collapseExample">
+                                    Добавить клиента
+                                </button>
+                            </p>
                     </td>
+                    <span th:if = "${consumer.name}" >
                     <td>
+
             <p>
                 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="true" aria-controls="collapseExample" >
                     Заказ клиента <span th:text="${consumer.name}"></span>
                 </button>
             </p>
+
                     </td>
+                    <td>
+                        <form method="post" th:action="@{order/saveconsumer}">
+                            <p>
+                                <button class="btn btn-primary" type="submit">
+                                    Сохранить клиента <span th:text="${consumer.name}"></span>
+                                </button>
+                            </p>
+                        </form>
+                    </td>
+                          </span>
                 </tr>
             </table>
         </div>
@@ -81,14 +94,14 @@
 
                             <div class="form-group">
                                 <label for="inputDatePlan"><b>Enter dat of planing receive</b></label>
-                                <input type="text" class="form-control" id="inputDatePlan" name="receivePlan" placeholder="Дата предпологаемого возврата" th:value="${order.appendDate}" >
+                                <input type="text" class="form-control" id="inputDatePlan" name="receivePlan" placeholder="Дата предпологаемого возврата" th:value="${order.appendDate.getDate() + 2}" >
                                 <script>
                                     $(function(){
                                         $('input[name="receivePlan"]').daterangepicker({
-                                            singleDatePicker: true
-                                           /* locale: {
+                                            singleDatePicker: true,
+                                           locale: {
                                                 format: 'DD.MM.YYYY'
-                                            }*/
+                                            }
                                         });
                                     });
                                 </script>
@@ -97,7 +110,7 @@
 
                             <div class="form-group">
                                 <label for="inputCallDate"><b>Enter dat of calling</b></label>
-                                <input name="callDate" type="text" class="form-control" id="inputCallDate" placeholder="Дата отзвона">
+                                <input name="callDate" type="text" class="form-control" id="inputCallDate" placeholder="Дата отзвона" th:value="${order.appendDate.getDate() + 1}">
                                 <script>
                                     $(function(){
                                         $('#inputCallDate').daterangepicker({

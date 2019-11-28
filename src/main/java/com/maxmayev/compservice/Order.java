@@ -4,12 +4,16 @@ package com.maxmayev.compservice;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 
-import java.util.Calendar;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 @Data
 @RequiredArgsConstructor
+@Slf4j
 public class Order {
 
     private int id;
@@ -44,5 +48,15 @@ public class Order {
         Cartridge,
         Other
     }
-    
+    @SneakyThrows
+    public void setCallDate(String callDate) {
+        SimpleDateFormat oldDateFormat = new SimpleDateFormat("d.MM.yyyy", Locale.getDefault());
+        this.callDate = oldDateFormat.parse(callDate);
+    }
+
+    @SneakyThrows
+    public void setReceivePlan(String receivePlan) {
+        SimpleDateFormat oldDateFormat = new SimpleDateFormat("d.MM.yyyy", Locale.getDefault());
+        this.receivePlan = oldDateFormat.parse(receivePlan);
+    }
 }
