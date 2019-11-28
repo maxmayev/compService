@@ -5,10 +5,214 @@
     <title>CompService</title>
     <link rel="stylesheet" th:href="@{css/bootstrap.css}" />
     <link rel="stylesheet" th:href="@{css/styles.css}" />
+    <link rel="stylesheet" href="/daterangepicker/daterangepicker.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="daterangepicker/moment.min.js"></script>
+    <script src="daterangepicker/daterangepicker.js"></script>
 
 </head>
 <body>
 <h1 class="header">Welcome to CompService</h1>
-<p th:text="${consumer.name} + ' ' + ${consumer.surname} + ' ' + ${consumer.patronymic}" >error </p>
+<div class="container">
+    <div class="row">
+        <div class="col" >
+            <table>
+                <tr>
+                    <td>
+            <p>
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">
+                    Добавить клиента
+                </button>
+            </p>
+       <!-- </div>
+        <div class="col">-->
+                    </td>
+                    <td>
+            <p>
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="true" aria-controls="collapseExample" >
+                    Заказ клиента <span th:text="${consumer.name}"></span>
+                </button>
+            </p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="collapse" id="collapseExample">
+            <form method="post" th:object="${consumer}">
+                <div class="form-group">
+                    <label for="inputName">Enter name of consumer</label>
+                    <input name="name" type="text" class="form-control" id="inputName" aria-describedby="NameHelp"
+                           placeholder="Enter name">
+                    <span class="validationErrors"></span>
+                </div>
+                <div class="form-group">
+                    <label for="inputSurName">Enter surname of consumer</label>
+                    <input name="surname" type="text" class="form-control" id="inputSurName" aria-describedby="SurNameHelp"
+                           placeholder="Enter surname">
+                    <span class="validationErrors"></span>
+                </div>
+                <div class="form-group">
+                    <label for="inputPatronymic">Enter patronymic of consumer</label>
+                    <input name="patronymic" type="text" class="form-control" id="inputPatronymic" aria-describedby="PatronymicHelp"
+                           placeholder="Enter patronymic">
+                    <span class="validationErrors"></span>
+                </div>
+                <div class="form-group">
+                    <label for="inputPhoneNumber">Enter phone-number of consumer</label>
+                    <input name="phoneNumber" type="text" class="form-control" id="inputPhoneNumber" aria-describedby="PhoneNumberHelp"
+                           placeholder="Enter phone-number">
+                    <span class="validationErrors"></span>
+                </div>
+                <button type="submit" class="btn btn-primary" value="Submit consumer">Submit</button>
+            </form>
+        </div>
+
+
+        <div class="collapse" id="collapseExample2">
+
+            <form method="post" th:action="@{/order/addordertoconsumer}" th:object="${order}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm">
+
+                            <div class="form-group">
+                                <label for="inputDatePlan"><b>Enter dat of planing receive</b></label>
+                                <input type="text" class="form-control" id="inputDatePlan" name="receivePlan" placeholder="Дата предпологаемого возврата" th:value="${order.appendDate}" >
+                                <script>
+                                    $(function(){
+                                        $('input[name="receivePlan"]').daterangepicker({
+                                            singleDatePicker: true
+                                           /* locale: {
+                                                format: 'DD.MM.YYYY'
+                                            }*/
+                                        });
+                                    });
+                                </script>
+                                <span class="validationErrors"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputCallDate"><b>Enter dat of calling</b></label>
+                                <input name="callDate" type="text" class="form-control" id="inputCallDate" placeholder="Дата отзвона">
+                                <script>
+                                    $(function(){
+                                        $('#inputCallDate').daterangepicker({
+                                            singleDatePicker: true,
+                                            locale: {
+                                                format: 'DD.MM.YYYY'
+                                            }
+                                        });
+                                    });
+                                </script>
+                                <span class="validationErrors"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="form-group" id="technic">
+                                <b>Pick technic:</b>
+                                <div th:each="technic : ${technics}">
+                                    <input name="technic" type="radio" th:value="${technic}" />
+                                    <span th:text="${technic}">TECHNIC</span><br/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputBrand"><b>Enter brand-name of technic</b></label>
+                                <input name="brand" type="text" class="form-control" id="inputBrand" aria-describedby="BrandHelp"
+                                       placeholder="Enter brand">
+                                <span class="validationErrors"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputModel"><b>Enter model-name of technic</b></label>
+                                <input name="model" type="text" class="form-control" id="inputModel" aria-describedby="ModelHelp"
+                                       placeholder="Enter model">
+                               <!-- <span class="validationErrors"></span>-->
+                            </div>
+                            <div class="form-group">
+                                <label for="inputSerialNumber"><b>Enter serial № of technic</b></label>
+                                <input name="serialNumber" type="text" class="form-control" id="inputSerialNumber" aria-describedby="SerialNumberHelp"
+                                       placeholder="Enter serial number">
+                                <span class="validationErrors"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="form-group" id="condition">
+                                <b>Pick condition:</b>
+                                <div th:each="condition: ${conditions}">
+                                    <input name="condition" type="radio" th:value="${condition}" />
+                                    <span th:text="${condition}">CONDITION</span><br/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputConditionDescrition"><b>Enter description for condition</b></label>
+                                <input name="conditionDescrition" type="text" class="form-control" id="inputConditionDescrition" aria-describedby="ConditionDescriptionHelp"
+                                       placeholder="Enter condition description">
+                                <span class="validationErrors"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputOrderDescription"><b>Enter order description</b></label>
+                                <input name="orderDescription" type="text" class="form-control" id="inputOrderDescription" aria-describedby="OrderDescriptionHelp"
+                                       placeholder="Enter order description">
+                                <span class="validationErrors"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputNote"><b>Enter your note</b></label>
+                                <input name="note" type="text" class="form-control" id="inputNote" aria-describedby="NoteHelp"
+                                       placeholder="Enter note">
+                                <span class="validationErrors"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm"></div>
+                        <div class="col-sm"></div>
+                        <div class="col-sm" style="text-align: right">
+                            <button type="submit" class="btn btn-primary" value="Submit order">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Имя</th>
+                <th scope="col">Фамилия</th>
+                <th scope="col">Отчество</th>
+                <th scope="col">Номер заказа</th>
+                <th scope="col">Техника</th>
+                <th scope="col" style="text-align: center">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="consumer: ${consumers}">
+                <td><p th:text="${consumer.name}">error</p></td>
+                <td><p th:text="${consumer.surname}">error</p></td>
+                <td><p th:text="${consumer.patronymic}">error</p></td>
+                <td><p th:text="${order.getOrderByConsumerId('${consumer.id}')}">error</p></td>
+                <td><p th:text="${order.getTechnic()}">error</p></td>
+                <td>
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                            <div class="col col-md-2">
+                    <form method="post"  action="/delete" th:object="${id}"><button name="id" th:value="${consumer.id}" type="submit"><img src="delete.png" alt="Удалить" style="vertical-align: middle;width: 20px"></button></form>
+                            </div>
+                            <div class="col col-md-2">
+                    <form method="post"  action="/edit" th:object="${id}"><button name="id" th:value="${consumer.id}" type="submit"><img src="edit.png" alt="Редактировать" style="vertical-align: middle;width: 20px; height: 20px"></button></form>
+                            </div>
+                        </div>
+                        </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 </body>
 </html>
