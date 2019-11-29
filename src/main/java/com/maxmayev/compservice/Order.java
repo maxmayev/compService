@@ -1,10 +1,7 @@
 package com.maxmayev.compservice;
 
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 import java.text.SimpleDateFormat;
@@ -13,32 +10,30 @@ import java.util.Locale;
 
 @Data
 @RequiredArgsConstructor
+@AllArgsConstructor
 @Slf4j
 public class Order {
 
-    //private int id;
+    private int id;
     private Date appendDate;
     private Date receivePlan;
     private Date receiveFact;
     private Date callDate;
     private int active = 1;
-    private Technic technic;
+    private Technic technic = Technic.NotSet;
     private String brand;
     private String model;
     private String serialNumber;
-    private Condition condition;
+    private ConditionType conditionType = ConditionType.NotSet;
     private String conditionDescription;
     private String orderDescription;
     private String note;
 
-    public String getOrderByConsumerId(String id){
-        return "010101";
-    }
-
-    public static enum Condition{
+    public static enum ConditionType{
         LikeNew,
         Used,
-        WithDamages;
+        WithDamages,
+        NotSet
     }
     public static enum Technic{
         Notebook,
@@ -46,7 +41,8 @@ public class Order {
         PhoneOrTablet,
         OrgTech,
         Cartridge,
-        Other
+        Other,
+        NotSet
     }
     @SneakyThrows
     public void setCallDate(String callDate) {

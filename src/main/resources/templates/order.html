@@ -94,7 +94,7 @@
 
                             <div class="form-group">
                                 <label for="inputDatePlan"><b>Enter dat of planing receive</b></label>
-                                <input type="text" class="form-control" id="inputDatePlan" name="receivePlan" placeholder="Дата предпологаемого возврата" th:value="${order.appendDate.getDate() + 2}" >
+                                <input type="text" class="form-control" id="inputDatePlan" name="receivePlan" placeholder="Дата предпологаемого возврата" th:value="${order.appendDate.getDate() + 1}" >
                                 <script>
                                     $(function(){
                                         $('input[name="receivePlan"]').daterangepicker({
@@ -127,7 +127,7 @@
                         <div class="col-sm">
                             <div class="form-group" id="technic">
                                 <b>Pick technic:</b>
-                                <div th:each="technic : ${technics}">
+                                <div th:each="technic : ${technics}" >
                                     <input name="technic" type="radio" th:value="${technic}" />
                                     <span th:text="${technic}">TECHNIC</span><br/>
                                 </div>
@@ -152,16 +152,16 @@
                             </div>
                         </div>
                         <div class="col-sm">
-                            <div class="form-group" id="condition">
+                            <div class="form-group" id="conditionType">
                                 <b>Pick condition:</b>
                                 <div th:each="condition: ${conditions}">
-                                    <input name="condition" type="radio" th:value="${condition}" />
+                                    <input name="conditionType" type="radio" th:value="${condition}" />
                                     <span th:text="${condition}">CONDITION</span><br/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="inputConditionDescrition"><b>Enter description for condition</b></label>
-                                <input name="conditionDescrition" type="text" class="form-control" id="inputConditionDescrition" aria-describedby="ConditionDescriptionHelp"
+                                <label for="inputConditionDescription"><b>Enter description for condition</b></label>
+                                <input name="conditionDescription" type="text" class="form-control" id="inputConditionDescription" aria-describedby="ConditionDescriptionHelp"
                                        placeholder="Enter condition description">
                                 <span class="validationErrors"></span>
                             </div>
@@ -208,7 +208,7 @@
                 <td><p th:text="${consumer.name}">error</p></td>
                 <td><p th:text="${consumer.surname}">error</p></td>
                 <td><p th:text="${consumer.patronymic}">error</p></td>
-                <td><p th:text="${order.getOrderByConsumerId('${consumer.id}')}">error</p></td>
+                <td><th:block th:each="order: ${consumer.getOrders()}"><span th:text="${order.getId()}">error</span><span th:unless="${ consumer.orders.size()-1 == consumer.orders.indexOf(order)}" > | </span></th:block></td>
                 <td><p th:text="${order.getTechnic()}">error</p></td>
                 <td>
                     <div class="container">

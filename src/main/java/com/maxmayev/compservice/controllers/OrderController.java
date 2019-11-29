@@ -3,6 +3,7 @@ package com.maxmayev.compservice.controllers;
 
 import com.maxmayev.compservice.Consumer;
 import com.maxmayev.compservice.DAO.ConsumerRepository;
+import com.maxmayev.compservice.DAO.OrderRepository;
 import com.maxmayev.compservice.Order;
 import com.sun.org.apache.xpath.internal.operations.Or;
 import lombok.extern.slf4j.Slf4j;
@@ -22,10 +23,12 @@ import java.util.*;
 public class OrderController {
 
     private ConsumerRepository consumerRepository;
+    private OrderRepository orderRepository;
 
     @Autowired
-    public OrderController(ConsumerRepository consumerRepository){
+    public OrderController(ConsumerRepository consumerRepository, OrderRepository orderRepository){
         this.consumerRepository = consumerRepository;
+        this.orderRepository = orderRepository;
     }
 
 
@@ -40,13 +43,17 @@ public class OrderController {
         model.addAttribute(consumer);
         List<Consumer> consumers = new ArrayList<>();
         consumerRepository.findAll().forEach(consumers::add);
+        /*StringBuilder consumerOrders = new StringBuilder();
+        orderRepository.getOrdersByConsumer(consumer).forEach(a-> consumerOrders.append(a.getId() + ", "));
+        log.info(orderRepository.getOrdersByConsumer(consumer).toString());
+        model.addAttribute("consumerOrders", consumerOrders.toString());*/
         model.addAttribute("consumers",consumers);
         Order order = new Order();
         order.setAppendDate(new Date());
         model.addAttribute("order", order);
         Order.Technic[] technics = Order.Technic.values();
         model.addAttribute("technics",technics);
-        Order.Condition[] conditions = Order.Condition.values();
+        Order.ConditionType[] conditions = Order.ConditionType.values();
         model.addAttribute("conditions",conditions);
         return "order";
     }
@@ -55,7 +62,7 @@ public class OrderController {
     public String addConsumer(Consumer consumer, Errors errors, SessionStatus sessionStatus){
         if (errors.hasErrors()) return "/order";
         log.info(consumer.toString());
-        consumerRepository.save(consumer);
+        //consumerRepository.save(consumer);
         return "redirect:/order";
     }
 
