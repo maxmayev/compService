@@ -1,3 +1,4 @@
+/*
 package com.maxmayev.compservice.DAO;
 
 import com.maxmayev.compservice.Order;
@@ -23,7 +24,7 @@ public class OrderRepositoryImpl implements OrderRepository {
     @Override
     public Iterable<Order> getOrdersByConsumerId(int id) {
         log.info("in query");
-        return jdbc.query("select id, id_consumer, appenddate, receiveplan, receivefact, calldate, active, technic, brand, model, serialnumber, conditionType,conditiondescription,orderdescription,note from compservice.`order` where id_consumer = ?",this::mapRowToOrder, id);
+        return jdbc.query("select id, id_consumer, appenddate, receiveplan, receivefact, calldate, active, technic, brand, model, serialnumber, conditionType,conditiondescription,orderdescription,note from compservice.orders where id_consumer = ?",this::mapRowToOrder, id);
     }
 
     private Order mapRowToOrder(ResultSet rs, int rowNum) throws SQLException{
@@ -38,3 +39,4 @@ public class OrderRepositoryImpl implements OrderRepository {
         return order;
     }
 }
+*/

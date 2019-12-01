@@ -1,3 +1,4 @@
+/*
 package com.maxmayev.compservice.DAO;
 
 import com.maxmayev.compservice.Consumer;
@@ -55,12 +56,14 @@ public class ConsumerRepositoryImpl implements ConsumerRepository {
     }
 
     private Consumer mapRowToConsumer (ResultSet rs, int rowNum) throws SQLException {
-       /* Consumer consumer = new Consumer();
+       */
+/* Consumer consumer = new Consumer();
         consumer.setId(rs.getInt("id"));
         consumer.setName(rs.getString("name"));
         consumer.setSurname(rs.getString("surname"));
         consumer.setPatronymic(rs.getString("patronymic"));
-        consumer.setPhoneNumber(rs.getString("phoneNumber"));*/
+        consumer.setPhoneNumber(rs.getString("phoneNumber"));*//*
+
        List<Order> orders = new ArrayList<>();
         orderRepository.getOrdersByConsumerId(rs.getInt("id")).forEach(o -> orders.add(o));
        Consumer consumer = new Consumer(rs.getInt("id"),rs.getString("name"),rs.getString("surname"),rs.getString("patronymic"),rs.getString("phoneNumber"),orders);
@@ -93,24 +96,29 @@ public class ConsumerRepositoryImpl implements ConsumerRepository {
 
     private void saveOrderToConsumer(Order order, long consId){
         log.info(order.toString());
-        /*jdbc.update("insert into compservice.order (id_consumer, appenddate, receiveplan, receivefact, calldate) values (?, ?, ?, ?, ?)",
+        */
+/*jdbc.update("insert into compservice.order (id_consumer, appenddate, receiveplan, receivefact, calldate) values (?, ?, ?, ?, ?)",
                 1, new Timestamp(order.getAppendDate().getDate()), new Timestamp(order.getReceivePlan().getDate()), new Timestamp(order.getReceiveFact().getDate()), new Timestamp(order.getCallDate().getDate()));
-*/
+*//*
+
         PreparedStatementCreator psc =
                 new PreparedStatementCreatorFactory(
-                        "insert into compservice.order (id_consumer, appenddate, receiveplan, receivefact, calldate, active, technic, brand, model, serialnumber, conditionType,conditiondescription,orderdescription,note) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                        "insert into compservice.orders (id_consumer, appenddate, receiveplan, receivefact, calldate, active, technic, brand, model, serialnumber, conditionType,conditiondescription,orderdescription,note) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                         Types.INTEGER, Types.TIMESTAMP, Types.TIMESTAMP, Types.TIMESTAMP, Types.TIMESTAMP,Types.TINYINT,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR
             ).newPreparedStatementCreator(Arrays.asList(consId, new Timestamp(order.getAppendDate().getTime()), new Timestamp(order.getReceivePlan().getTime()),
                         new Timestamp(order.getReceiveFact().getTime()), new Timestamp(order.getCallDate().getTime()), order.getActive(), order.getTechnic().toString(),
                         order.getBrand(),order.getModel(),order.getSerialNumber(), order.getConditionType().toString(), order.getConditionDescription(), order.getOrderDescription(), order.getNote()));
         jdbc.update(psc);
-        /*PreparedStatementCreator psc =
+        */
+/*PreparedStatementCreator psc =
                 new PreparedStatementCreatorFactory(
                         "insert into compservice.order (id_consumer, appenddate, receiveplan, receivefact, calldate, active, technic, brand, model, serialnumber, condition, conditiondescription, orderdescription, note) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                         Types.INTEGER, Types.TIMESTAMP, Types.TIMESTAMP, Types.TIMESTAMP, Types.TIMESTAMP, Types.TINYINT,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR
                 ).newPreparedStatementCreator(Arrays.asList(consId, new Timestamp(order.getAppendDate().getTime()), new Timestamp(order.getReceivePlan().getTime()), new Timestamp(order.getReceiveFact().getTime()), new Timestamp(order.getCallDate().getTime()),order.getActive(), order.getTechnic().toString(), order.getBrand().toString(), order.getModel().toString(), order.getSerialNumber().toString(),
                         order.getCondition().toString(), order.getConditionDescription().toString(), order.getOrderDescription().toString(), order.getNote().toString()));
-        jdbc.update(psc);*/
+        jdbc.update(psc);*//*
+
         log.info("update id" + consId);
     }
 }
+*/

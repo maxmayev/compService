@@ -1,26 +1,35 @@
 package com.maxmayev.compservice;
 
 
-import com.maxmayev.compservice.DAO.OrderRepository;
 import lombok.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+
+@Entity
+@Table(name = "consumer")
 public class Consumer {
 
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
     private String name;
     private String surname;
     private String patronymic;
     private String phoneNumber;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "consumer_id")
+   //@OneToMany(mappedBy="consumer",cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<>();
-    public void addOrder(Order order){
+
+    public void addOrders(Order order){
         this.orders.add(order);
     }
 }

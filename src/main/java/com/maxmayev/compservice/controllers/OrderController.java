@@ -5,7 +5,6 @@ import com.maxmayev.compservice.Consumer;
 import com.maxmayev.compservice.DAO.ConsumerRepository;
 import com.maxmayev.compservice.DAO.OrderRepository;
 import com.maxmayev.compservice.Order;
-import com.sun.org.apache.xpath.internal.operations.Or;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,9 +39,11 @@ public class OrderController {
 
     @GetMapping
     public String showOrderForm(Model model, Consumer consumer){
-        model.addAttribute(consumer);
+        //model.addAttribute(consumer);
         List<Consumer> consumers = new ArrayList<>();
+        //consumerRepository.findAll().forEach(cons -> {cons.setOrders(orderRepository.findById(cons.getId())).;consumers::add;});
         consumerRepository.findAll().forEach(consumers::add);
+       // log.info(consumers.toString());
         /*StringBuilder consumerOrders = new StringBuilder();
         orderRepository.getOrdersByConsumer(consumer).forEach(a-> consumerOrders.append(a.getId() + ", "));
         log.info(orderRepository.getOrdersByConsumer(consumer).toString());
@@ -70,16 +71,18 @@ public class OrderController {
     public String addOrderToConsumer(@ModelAttribute Consumer consumer, Order order, Errors errors, SessionStatus sessionStatus){
         order.setAppendDate(new Date());
         order.setReceiveFact(order.getReceivePlan());
-        consumer.addOrder(order);
-        log.info(order.toString());
-        log.info(consumer.toString());
+        //order.setConsumer(consumer);
+        consumer.addOrders(order);
+        /*log.info(order.toString());
+        log.info(consumer.toString());*/
         return "redirect:/order";
     }
 
     @PostMapping("/saveconsumer")
     public String saveConsumer(@ModelAttribute Consumer consumer, SessionStatus sessionStatus){
         log.info(consumer.toString());
-        consumerRepository.saveConsumerOrders(consumer, consumer.getOrders());
+        consumerRepository.save(consumer);
+        //orderRepository.saveAll(consumer.getOrders());
         sessionStatus.setComplete();
         return "redirect:/order";
     }

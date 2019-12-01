@@ -208,8 +208,8 @@
                 <td><p th:text="${consumer.name}">error</p></td>
                 <td><p th:text="${consumer.surname}">error</p></td>
                 <td><p th:text="${consumer.patronymic}">error</p></td>
-                <td><th:block th:each="order: ${consumer.getOrders()}"><a href="https://www.google.ru/"><span th:text="${order.getId()}">error</span></a><span th:unless="${ consumer.orders.size()-1 == consumer.orders.indexOf(order)}" > | </span></th:block></td>
-                <td><th:block th:each="order: ${consumer.getOrders()}"><span th:text="${order.getTechnic().toString()}">error</span><span th:unless="${ consumer.orders.size()-1 == consumer.orders.indexOf(order)}" > | </span></th:block></td>
+                <td><th:block th:each="order: ${consumer.orders}"><a href="https://www.google.ru/"><span th:text="${order.getId()}">error</span></a><span th:unless="${ consumer.orders.size()-1 == consumer.orders.indexOf(order)}" > | </span></th:block></td>
+                <td><th:block th:each="order: ${consumer.getOrders()}"><span th:text="${order.getTechnic()}">error</span><span th:unless="${ consumer.orders.size()-1 == consumer.orders.indexOf(order)}" > | </span></th:block></td>
                 <td>
                     <div class="container">
                         <div class="row justify-content-md-center">

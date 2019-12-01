@@ -22,7 +22,7 @@ public class DeleteController {
 
     @PostMapping
     public String deleteConsumer(String id){
-        consumerRepository.deleteById(id);
+        consumerRepository.deleteById(Integer.parseInt(id));
         log.info("Delete consumer with id " + id);
         return "redirect:/order";
     }
