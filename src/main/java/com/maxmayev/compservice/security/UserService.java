@@ -1,7 +1,5 @@
-package com.maxmayev.compservice;
+package com.maxmayev.compservice.security;
 
-import com.maxmayev.compservice.DAO.UserRepository;
-import com.maxmayev.compservice.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -53,9 +53,9 @@ public class Order {
         NotSet
     }
 
-    /*@ManyToOne(fetch = FetchType.EAGER, targetEntity = Consumer.class,  cascade= CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Consumer.class,  cascade= CascadeType.ALL)
     @JoinColumn(name = "consumer_id", referencedColumnName = "id",nullable = false)
-    private Consumer consumer;*/
+    private Consumer consumer;
 
     @SneakyThrows
     public void setCallDate(String callDate) {

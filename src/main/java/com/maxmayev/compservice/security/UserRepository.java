@@ -1,6 +1,6 @@
-package com.maxmayev.compservice.DAO;
+package com.maxmayev.compservice.security;
 
-import com.maxmayev.compservice.User;
+import com.maxmayev.compservice.security.User;
 import org.springframework.data.repository.CrudRepository;
 
 public interface UserRepository extends CrudRepository<User, Long> {

@@ -1,4 +1,4 @@
-package com.maxmayev.compservice;
+package com.maxmayev.compservice.security;
 
 
 import lombok.Data;

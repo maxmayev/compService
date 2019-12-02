@@ -1,4 +1,4 @@
-package com.maxmayev.compservice.configurations;
+package com.maxmayev.compservice.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/order*").hasRole("ADMIN").antMatchers("/","/**").access("permitAll")
+        http.authorizeRequests().antMatchers("/order*","/delete*").hasRole("ADMIN").antMatchers("/","/**").access("permitAll")
                 .and().formLogin().loginPage("/login").defaultSuccessUrl("/order",true);
     }
 }

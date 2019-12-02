@@ -1,7 +1,5 @@
-package com.maxmayev.compservice.controllers;
+package com.maxmayev.compservice.security;
 
-import com.maxmayev.compservice.DAO.UserRepository;
-import com.maxmayev.compservice.RegistrationForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;

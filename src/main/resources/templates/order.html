@@ -55,7 +55,7 @@
     </div>
     <div class="row">
         <div class="collapse" id="collapseExample">
-            <form method="post" th:object="${consumer}">
+            <form method="post" th:action="@{/order}" th:object="${consumer}">
                 <div class="form-group">
                     <label for="inputName">Enter name of consumer</label>
                     <input name="name" type="text" class="form-control" id="inputName" aria-describedby="NameHelp"
@@ -214,10 +214,10 @@
                     <div class="container">
                         <div class="row justify-content-md-center">
                             <div class="col col-md-2">
-                    <form method="post"  action="/delete" th:object="${id}"><button name="id" th:value="${consumer.id}" type="submit"><img src="delete.png" alt="Удалить" style="vertical-align: middle;width: 20px"></button></form>
+                    <form method="post"  th:action="@{/delete}" th:object="${id}"><button name="id" th:value="${consumer.id}" type="submit"><img src="delete.png" alt="Удалить" style="vertical-align: middle;width: 20px"></button></form>
                             </div>
                             <div class="col col-md-2">
-                    <form method="post"  action="/edit" th:object="${id}"><button name="id" th:value="${consumer.id}" type="submit"><img src="edit.png" alt="Редактировать" style="vertical-align: middle;width: 20px; height: 20px"></button></form>
+                    <form method="post"  th:action="@{/edit}" th:object="${id}"><button name="id" th:value="${consumer.id}" type="submit"><img src="edit.png" alt="Редактировать" style="vertical-align: middle;width: 20px; height: 20px"></button></form>
                             </div>
                         </div>
                         </div>

@@ -10,7 +10,7 @@
 <body>
 <h1 class="header">Welcome to CompService</h1>
 <div class="login">
-    <form method="post" th:action="@{/security}" th:object="${user}">
+    <form method="post" th:action="@{/login}">
         <div class="form-group">
             <label for="username">Username</label>
             <input name="username" type="text" class="form-control" id="username" aria-describedby="usernameHelp"
