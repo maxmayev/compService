@@ -5,8 +5,10 @@ import com.maxmayev.compservice.Consumer;
 import com.maxmayev.compservice.DAO.ConsumerRepository;
 import com.maxmayev.compservice.DAO.OrderRepository;
 import com.maxmayev.compservice.Order;
+import com.maxmayev.compservice.security.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -38,8 +40,10 @@ public class OrderController {
     }*/
 
     @GetMapping
-    public String showOrderForm(Model model, Consumer consumer){
+    public String showOrderForm(Model model, Consumer consumer, Authentication authentication){
         //model.addAttribute(consumer);
+        User user = (User)authentication.getPrincipal();
+        log.info(user.toString());
         List<Consumer> consumers = new ArrayList<>();
         //consumerRepository.findAll().forEach(cons -> {cons.setOrders(orderRepository.findById(cons.getId())).;consumers::add;});
         consumerRepository.findAll().forEach(consumers::add);
