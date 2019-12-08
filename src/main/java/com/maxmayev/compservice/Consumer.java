@@ -1,7 +1,11 @@
 package com.maxmayev.compservice;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
+import net.minidev.json.annotate.JsonIgnore;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,20 +17,25 @@ import java.util.List;
 
 @Entity
 @Table(name = "consumer")
+@DynamicInsert
+@DynamicUpdate
+@ToString(exclude = "orders")
 public class Consumer {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
     private String name;
     private String surname;
     private String patronymic;
     private String phoneNumber;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Order.class)
     @JoinColumn(name = "consumer_id")
-   //@OneToMany(mappedBy="consumer",cascade = CascadeType.ALL)
+    //@JsonIgnore
+    @JsonManagedReference
+   // @OneToMany(mappedBy="consumer",cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<>();
 
     public void addOrders(Order order){

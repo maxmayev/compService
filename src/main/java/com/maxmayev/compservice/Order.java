@@ -1,8 +1,11 @@
 package com.maxmayev.compservice;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
+import net.minidev.json.annotate.JsonIgnore;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
@@ -19,7 +22,7 @@ public class Order {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
     private Date appendDate;
     private Date receivePlan;
@@ -53,8 +56,9 @@ public class Order {
         NotSet
     }
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Consumer.class,  cascade= CascadeType.ALL)
-    @JoinColumn(name = "consumer_id", referencedColumnName = "id",nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER,cascade= CascadeType.ALL)
+    @JoinColumn(name = "consumer_id", nullable = false)
+    @JsonBackReference
     private Consumer consumer;
 
     @SneakyThrows
