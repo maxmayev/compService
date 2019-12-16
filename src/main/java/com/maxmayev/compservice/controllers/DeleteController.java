@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 public class DeleteController {
 
+
     private ConsumerRepository consumerRepository;
+
     @Autowired
     public void setConsumerRepository(ConsumerRepository consumerRepository) {
         this.consumerRepository = consumerRepository;
