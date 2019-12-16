@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers(HttpMethod.OPTIONS).permitAll()
+        http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.OPTIONS).permitAll().antMatchers(HttpMethod.DELETE).permitAll()
                 .antMatchers("/order*","/delete*").hasRole("ADMIN").antMatchers("/","/**").access("permitAll")
                 .and().formLogin().loginPage("/login").defaultSuccessUrl("/order",true)
         .and().logout().logoutSuccessUrl("/");

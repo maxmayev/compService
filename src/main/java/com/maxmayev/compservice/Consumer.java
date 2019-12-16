@@ -34,7 +34,7 @@ public class Consumer {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Order.class)
     @JoinColumn(name = "consumer_id")
     //@JsonIgnore
-    @JsonManagedReference
+    //@JsonManagedReference
    // @OneToMany(mappedBy="consumer",cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<>();
 
