@@ -222,7 +222,17 @@
                     <form method="post"  th:action="@{/delete}" th:object="${id}"><button name="id" th:value="${consumer.id}" type="submit"><img src="delete.png" alt="Удалить" style="vertical-align: middle;width: 20px"></button></form>
                             </div>
                             <div class="col col-md-2">
-                    <form method="post"  th:action="@{/edit}" th:object="${id}"><button name="id" th:value="${consumer.id}" type="submit"><img src="edit.png" alt="Редактировать" style="vertical-align: middle;width: 20px; height: 20px"></button></form>
+                    <form method="post"  th:action="@{/edit}" th:object="${id}"><button name="edit" th:value="${consumer.id}" type="submit"><img src="edit.png" alt="Редактировать" style="vertical-align: middle;width: 20px; height: 20px"></button></form>
+                            </div>
+                            <div class="col col-md-2">
+                                <form method="post"  th:action="@{/order/artemis}" th:object="${consumer}">
+                                    <input th:name="id" type="text" th:value="${consumer.id}" th:hidden="true">
+                                    <input th:name="name" type="text" th:value="${consumer.name}" th:hidden="true">
+                                    <input th:name="surname" type="text" th:value="${consumer.surname}" th:hidden="true">
+                                    <input th:name="patronymic" type="text" th:value="${consumer.patronymic}" th:hidden="true">
+                                    <input th:name="phoneNumber" type="text" th:value="${consumer.phoneNumber}" th:hidden="true">
+                                    <button th:name="consumer" type="submit"><img src="activemq.jpg" alt="Редактировать" style="vertical-align: middle;width: 20px; height: 20px"></button>
+                                </form>
                             </div>
                         </div>
                         </div>

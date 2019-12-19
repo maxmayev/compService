@@ -6,6 +6,7 @@ import com.maxmayev.compservice.DAO.ConsumerRepository;
 import com.maxmayev.compservice.DAO.OrderRepository;
 import com.maxmayev.compservice.Order;
 import com.maxmayev.compservice.security.User;
+import com.maxmayev.compservice.services.ConsumerMessagingService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -25,11 +26,13 @@ public class OrderController {
 
     private ConsumerRepository consumerRepository;
     private OrderRepository orderRepository;
+    private ConsumerMessagingService consumerMessagingService;
 
     @Autowired
-    public OrderController(ConsumerRepository consumerRepository, OrderRepository orderRepository){
+    public OrderController(ConsumerRepository consumerRepository, OrderRepository orderRepository,ConsumerMessagingService consumerMessagingService){
         this.consumerRepository = consumerRepository;
         this.orderRepository = orderRepository;
+        this.consumerMessagingService = consumerMessagingService;
     }
 
 
@@ -89,6 +92,14 @@ public class OrderController {
         //orderRepository.saveAll(consumer.getOrders());
         sessionStatus.setComplete();
         return "redirect:/order";
+    }
+
+    @PostMapping("/artemis")
+    public String sendMessageThroughArtemis(Consumer consumer){
+        log.info("In controller artemis" + consumer.toString());
+        consumerMessagingService.sendConsumer(consumer);
+        consumer.setName(null);
+        return  "redirect:/order";
     }
 
 

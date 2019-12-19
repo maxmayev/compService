@@ -2,3 +2,14 @@ spring:
   data:
     rest:
       base-path: /api
+  jms:
+    template:
+      default-destination: com.maxmayev.consumer.queue
+  artemis:
+    host: localhost
+    port: 61616
+    embedded:
+      enabled: false
+    user: max
+    password: radeon
+
