@@ -1,10 +1,7 @@
-package com.maxmayev.compservice.DAO;
+package com.maxmayev.compservice.repository;
 
-import com.maxmayev.compservice.Consumer;
-import com.maxmayev.compservice.Order;
+import com.maxmayev.compservice.domain.Consumer;
 import org.springframework.data.repository.CrudRepository;
-
-import java.util.List;
 
 public interface ConsumerRepository extends CrudRepository<Consumer,Integer> {
     //Consumer findById(int id);

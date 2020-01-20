@@ -1,9 +1,7 @@
-package com.maxmayev.compservice;
+package com.maxmayev.compservice.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
-import net.minidev.json.annotate.JsonIgnore;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 

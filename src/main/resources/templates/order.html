@@ -40,7 +40,7 @@
 
                     </td>
                     <td>
-                        <form method="post" th:action="@{order/saveconsumer}">
+                        <form method="post" th:action="@{consumer/saveconsumer}">
                             <p>
                                 <button class="btn btn-primary" type="submit">
                                     Сохранить клиента <span th:text="${consumer.name}"></span>
@@ -60,7 +60,7 @@
     </div>
     <div class="row">
         <div class="collapse" id="collapseExample">
-            <form method="post" th:action="@{/order}" th:object="${consumer}">
+            <form method="post" th:action="@{/consumer/add}" th:object="${consumer}">
                 <div class="form-group">
                     <label for="inputName">Enter name of consumer</label>
                     <input name="name" type="text" class="form-control" id="inputName" aria-describedby="NameHelp"
@@ -92,7 +92,7 @@
 
         <div class="collapse" id="collapseExample2">
 
-            <form method="post" th:action="@{/order/addordertoconsumer}" th:object="${order}">
+            <form method="post" th:action="@{/consumer/addordertoconsumer}" th:object="${order}">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm">
@@ -147,7 +147,6 @@
                                 <label for="inputModel"><b>Enter model-name of technic</b></label>
                                 <input name="model" type="text" class="form-control" id="inputModel" aria-describedby="ModelHelp"
                                        placeholder="Enter model">
-                               <!-- <span class="validationErrors"></span>-->
                             </div>
                             <div class="form-group">
                                 <label for="inputSerialNumber"><b>Enter serial № of technic</b></label>
@@ -219,7 +218,7 @@
                     <div class="container">
                         <div class="row justify-content-md-center">
                             <div class="col col-md-2">
-                    <form method="post"  th:action="@{/delete}" th:object="${id}"><button name="id" th:value="${consumer.id}" type="submit"><img src="delete.png" alt="Удалить" style="vertical-align: middle;width: 20px"></button></form>
+                    <form method="post"  th:action="@{/consumer/delete}" th:object="${id}"><button name="id" th:value="${consumer.id}" type="submit"><img src="delete.png" alt="Удалить" style="vertical-align: middle;width: 20px"></button></form>
                             </div>
                             <div class="col col-md-2">
                     <form method="post"  th:action="@{/edit}" th:object="${id}"><button name="id" th:value="${consumer.id}" type="submit"><img src="edit.png" alt="Редактировать" style="vertical-align: middle;width: 20px; height: 20px"></button></form>

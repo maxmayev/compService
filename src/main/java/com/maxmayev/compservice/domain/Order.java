@@ -1,11 +1,10 @@
-package com.maxmayev.compservice;
+package com.maxmayev.compservice.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.maxmayev.compservice.domain.Consumer;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
-import net.minidev.json.annotate.JsonIgnore;
-import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.*;
 import java.text.SimpleDateFormat;

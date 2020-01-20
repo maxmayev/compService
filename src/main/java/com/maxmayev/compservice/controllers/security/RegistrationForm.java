@@ -1,6 +1,7 @@
-package com.maxmayev.compservice.security;
+package com.maxmayev.compservice.controllers.security;
 
 
+import com.maxmayev.compservice.domain.User;
 import lombok.Data;
 import org.springframework.security.crypto.password.PasswordEncoder;
 

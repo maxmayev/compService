@@ -1,5 +1,6 @@
-package com.maxmayev.compservice.security;
+package com.maxmayev.compservice.controllers.security;
 
+import com.maxmayev.compservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,6 @@ public class RegistrationController {
     UserRepository userRepository;
     PasswordEncoder encoder;
 
-    @Autowired
     public RegistrationController(UserRepository userRepository, PasswordEncoder encoder) {
         this.userRepository = userRepository;
         this.encoder = encoder;

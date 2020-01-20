@@ -1,4 +1,4 @@
-package com.maxmayev.compservice.security;
+package com.maxmayev.compservice.controllers.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,14 +19,15 @@ import org.springframework.security.crypto.password.StandardPasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Qualifier("userService")
     @Autowired
     private UserDetailsService userDetailsService;
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(encoder());
     }
+
     @Bean
     public PasswordEncoder encoder(){
         return new StandardPasswordEncoder("maxmayev");

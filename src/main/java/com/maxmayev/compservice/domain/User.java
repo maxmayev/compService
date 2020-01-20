@@ -1,4 +1,4 @@
-package com.maxmayev.compservice.security;
+package com.maxmayev.compservice.domain;
 
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
