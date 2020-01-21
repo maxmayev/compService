@@ -20,7 +20,7 @@ Implemented:
 			- Order by id (id) : /rest/orders{id}
 			- Add new order : /orders/new
 			- Save or update consumer : /rest/consumer/{id}
-			- Delete Order : /rest/orders/{id}
+			- Delete order : /rest/orders/{id}
 			- Delete consumer : /rest/consumers/{id}
        
 -Implementation REST by JPA with full functionality and HATEOAS
