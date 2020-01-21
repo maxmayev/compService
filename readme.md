@@ -11,8 +11,11 @@ Build a customer accounting system for the Computer service organization.
 Implemented:
 
 -Login and storing accounts in the database (Spring Security)
+
 -Persistence of customers and their orders (Spring Data JPA & MySQL)
+
 -Frontend (template engine Thymeleaf)
+
 -REST API :
 
 			- Recent orders (size) : /rest/orders/recent?size={size}
