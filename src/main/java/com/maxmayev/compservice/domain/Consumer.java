@@ -21,7 +21,7 @@ import java.util.List;
 public class Consumer {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", updatable = false, nullable = false)
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
     private String name;

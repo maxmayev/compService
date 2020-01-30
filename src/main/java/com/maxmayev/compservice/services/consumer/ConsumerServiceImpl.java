@@ -47,4 +47,5 @@ public class ConsumerServiceImpl implements ConsumerService {
         consumerRepository.deleteById(Integer.parseInt(id));
         log.info("Delete consumer with id " + id);
     }
+
 }

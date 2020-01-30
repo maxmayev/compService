@@ -1,0 +1,11 @@
+INSERT INTO compservice.consumer (id, name, surname, patronymic, phone_number) VALUES (1, 'Max', 'Mayev', 'Nikolaevich', '+79657560804');
+INSERT INTO compservice.consumer (id, name, surname, patronymic, phone_number) VALUES (125, 'library', 'Маев', 'Николаевич', '9657560804');
+INSERT INTO compservice.consumer (id, name, surname, patronymic, phone_number) VALUES (126, 'library', 'Маев', 'Николаевич', '9657560804');
+INSERT INTO compservice.consumer (id, name, surname, patronymic, phone_number) VALUES (127, 'Максим', 'Маев', 'Николаевич', '9657560804');
+INSERT INTO compservice.consumer (id, name, surname, patronymic, phone_number) VALUES (145, 'Максим', 'Маев', 'Николаевич', '9657560804');
+INSERT INTO compservice.consumer (id, name, surname, patronymic, phone_number) VALUES (151, 'Максим', 'Маев', 'Николаевич', '');
+INSERT INTO compservice.consumer (id, name, surname, patronymic, phone_number) VALUES (153, 'z58ck1', '', '', '');
+INSERT INTO compservice.consumer (id, name, surname, patronymic, phone_number) VALUES (154, 'Максим', 'Маев', 'Николаевич', '');
+INSERT INTO compservice.consumer (id, name, surname, patronymic, phone_number) VALUES (157, 'library', 'Маев', 'Николаевич', '9657560804');
+INSERT INTO compservice.consumer (id, name, surname, patronymic, phone_number) VALUES (158, 'library', 'Маев', 'Николаевич', '9657560804');
+INSERT INTO compservice.consumer (id, name, surname, patronymic, phone_number) VALUES (172, 'MMM', 'Маев', 'Николаевич', '9657560804');

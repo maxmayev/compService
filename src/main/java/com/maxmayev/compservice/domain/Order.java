@@ -20,7 +20,7 @@ import java.util.Locale;
 public class Order {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", updatable = false, nullable = false)
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
     private Date appendDate;

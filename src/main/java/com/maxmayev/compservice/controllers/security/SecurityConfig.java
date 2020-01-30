@@ -39,5 +39,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/order*","/delete*").hasRole("ADMIN").antMatchers("/","/**").access("permitAll")
                 .and().formLogin().loginPage("/login").defaultSuccessUrl("/order",true)
         .and().logout().logoutSuccessUrl("/");
+        http.headers().frameOptions().disable();
     }
 }
